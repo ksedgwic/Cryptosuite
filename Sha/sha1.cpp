@@ -1,6 +1,6 @@
 #include <string.h>
-#include <avr/io.h>
-#include <avr/pgmspace.h>
+// #include <avr/io.h>
+// #include <avr/pgmspace.h>
 #include "sha1.h"
 
 #define SHA1_K0 0x5a827999
@@ -72,9 +72,10 @@ void Sha1Class::addUncounted(uint8_t data) {
   }
 }
 
-void Sha1Class::write(uint8_t data) {
+size_t Sha1Class::write(uint8_t data) {
   ++byteCount;
   addUncounted(data);
+  return 1;
 }
 
 void Sha1Class::pad() {
