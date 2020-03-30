@@ -1,6 +1,6 @@
 #include <string.h>
-#include <avr/io.h>
-#include <avr/pgmspace.h>
+// #include <avr/io.h>
+// #include <avr/pgmspace.h>
 #include "sha256.h"
 
 uint32_t sha256K[] PROGMEM = {
@@ -87,9 +87,10 @@ void Sha256Class::addUncounted(uint8_t data) {
   }
 }
 
-void Sha256Class::write(uint8_t data) {
+size_t Sha256Class::write(uint8_t data) {
   ++byteCount;
   addUncounted(data);
+  return 1;
 }
 
 void Sha256Class::pad() {
